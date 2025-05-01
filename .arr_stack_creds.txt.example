@@ -1,0 +1,51 @@
+# Example Credentials File for *Arr Transcode Candidate Reporter
+#
+# Instructions:
+# 1. Copy or rename this file to ".arr_stack_creds.txt" in the same directory as the script.
+# 2. Edit the copied file and replace placeholder values with your actual data.
+# 3. Ensure this file uses KEY=VALUE format (no spaces around '=').
+# 4. For EACH instance you want to process, define ALL 5 keys below using a unique prefix.
+# 5. Add ".arr_stack_creds.txt" (the real file, not this example) to your .gitignore!
+
+# === Radarr Instances ===
+
+# --- Example: Default/HD Radarr Instance ---
+# Use a unique prefix (e.g., RADARR_, RADARR_HD_, MY_RADARR_)
+RADARR_URL=http://192.168.1.10:7878
+RADARR_API_KEY=YOUR_RADARR_HD_API_KEY_HERE
+RADARR_INSTANCE_NAME=Radarr HD Movies
+RADARR_INSTANCE_TYPE=radarr
+RADARR_TARGET_QUALITY=Remux-1080p
+
+# --- Example: 4K Radarr Instance ---
+# Use a different unique prefix
+RADARR4K_URL=http://192.168.1.11:7879
+RADARR4K_API_KEY=YOUR_RADARR_4K_API_KEY_HERE
+RADARR4K_INSTANCE_NAME=Radarr 4K Movies
+RADARR4K_INSTANCE_TYPE=radarr
+RADARR4K_TARGET_QUALITY=Remux-2160p
+
+
+# === Sonarr Instances ===
+
+# --- Example: Default/HD Sonarr Instance ---
+SONARR_URL=http://192.168.1.10:8989
+SONARR_API_KEY=YOUR_SONARR_HD_API_KEY_HERE
+SONARR_INSTANCE_NAME=Sonarr TV Shows HD
+SONARR_INSTANCE_TYPE=sonarr
+SONARR_TARGET_QUALITY=WEBDL-1080p
+
+# --- Example: 4K Sonarr Instance ---
+SONARR4K_URL=http://192.168.1.11:8980
+SONARR4K_API_KEY=YOUR_SONARR_4K_API_KEY_HERE
+SONARR4K_INSTANCE_NAME=Sonarr TV Shows 4K
+SONARR4K_INSTANCE_TYPE=sonarr
+# Example: Maybe identify large 1080p files in the 4K library? Or target 4K Remuxes?
+SONARR4K_TARGET_QUALITY=Bluray-1080p
+
+# --- Example: Anime Sonarr Instance ---
+SONARRANIME_URL=http://192.168.1.12:8989
+SONARRANIME_API_KEY=YOUR_SONARR_ANIME_API_KEY_HERE
+SONARRANIME_INSTANCE_NAME=Sonarr Anime
+SONARRANIME_INSTANCE_TYPE=sonarr
+SONARRANIME_TARGET_QUALITY=Bluray-1080p
