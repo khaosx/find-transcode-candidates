@@ -66,5 +66,29 @@ This file stores the connection details and settings for each *Arr instance the 
 
 Navigate to the directory containing the script and the credentials file in your terminal and run:
 
-```bash
-python3 transcode_candidate_reporter.py
+    python3 transcode_candidate_reporter.py
+
+(You might use `python` instead of `python3` depending on your system setup).
+
+The script will print progress messages to the console as it discovers instances, connects to them, fetches data, and generates reports.
+
+## Output
+
+The script creates a subdirectory named `transcode-candidates-report` in the same location where it is run. Inside this directory, you will find:
+
+* **`index.html`**: The main summary page. It lists all processed instances, shows candidate counts (movies for Radarr, series for Sonarr), total candidate size (where applicable), status, and provides links to detail pages. It also includes an overall summary footer and a link to the error report if any errors occurred.
+* **`transcode_candidates_{InstanceName}.html`**: A separate detail page for each successfully processed instance (e.g., `transcode_candidates_Radarr_4K.html`).
+    * For Radarr, lists Movies matching the `TARGET_QUALITY` with their year and file size.
+    * For Sonarr, lists Series containing at least one episode matching the `TARGET_QUALITY`, showing the series year, the number of matching episodes in that series, and the total size of those matching episodes.
+* **`error_report.html`**: (Optional) Generated only if errors occurred during processing. Lists errors grouped by instance, showing the item type, item name (if applicable), and the specific error message.
+
+Open `index.html` in your web browser to view the results.
+
+## Troubleshooting
+
+* **`FileNotFoundError`:** Make sure `.arr_stack_creds.txt` exists in the same directory as the script and is named correctly.
+* **`Error: Required keys ... not found`:** Ensure all 5 required keys (URL, API\_KEY, INSTANCE\_NAME, INSTANCE\_TYPE, TARGET\_QUALITY) are defined for each instance prefix in your `.arr_stack_creds.txt` file.
+* **Connection Errors / Timeouts:** Verify the `_URL` for the instance is correct and reachable from where you are running the script. Check firewalls. Increase the `timeout` values in the `requests.get()` calls within the script if your library is very large or the connection is slow.
+* **HTTP 401 Unauthorized:** Double-check the `_API_KEY` for the failing instance in your credentials file.
+* **HTTP 400/500 Errors:** These often indicate an issue with the request or the *Arr instance itself. Check the specific error message and potentially the *Arr application logs. The `error_report.html` might contain details.
+* **Syntax Errors:** Ensure you are using Python 3.7 or higher.
